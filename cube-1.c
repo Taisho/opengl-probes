@@ -5,6 +5,7 @@
 #include <time.h>
 
 static GLfloat offset = -1.0f;
+static GLfloat rotate = 0.0f;
 
 pthread_t thread;
 
@@ -21,6 +22,7 @@ void display(void){
   /* viewing transformation */
   //gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
   glTranslatef(0.0, 0.0, offset);//HERE 
+  glRotatef(rotate, 0.0f, 1.0f, 0.0f);
   glScalef(1.0, 2.0, 1.0);
   /* modeling transformation */
   glutWireCube(1.0);
@@ -38,6 +40,7 @@ void reshape(int w, int h){
 
 void spinMatrix(void){
     offset = offset - 0.008f;
+    rotate = rotate - 0.8f;
     glutPostRedisplay();
     printf("%f\n", offset);
 }
