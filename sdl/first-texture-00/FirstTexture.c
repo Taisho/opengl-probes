@@ -1,14 +1,21 @@
 #include "FirstTexture.h"
+<<<<<<< HEAD:sdl/first-texture-00/FirstTexture.c
 #include <SDL2/SDL.h>
+=======
+>>>>>>> 44055a56a886b79ab18d32010b5eb4dd23198977:sdl/first-texture/FirstTexture.c
  
 bool FirstTexture::OnInit() {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         return false;
     }
 
-    if((Surf_Display = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
-        return false;
-    }
+    SDL_Window *sdlWindow = SDL_CreateWindow(NULL,
+                                SDL_WINDOWPOS_UNDEFINED,
+                                SDL_WINDOWPOS_UNDEFINED,
+                                0, 0,
+                                SDL_WINDOW_FULLSCREEN_DESKTOP);
+
+    renderer = SDL_CreateRenderer(sdlWindow, -1, 0);
 
     return true;
 }
@@ -23,6 +30,9 @@ void FirstTexture::OnLoop() {
 }
 
 void FirstTexture::OnRender() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
 }
 
 void FirstTexture::OnCleanup() {
@@ -30,13 +40,9 @@ void FirstTexture::OnCleanup() {
 }
 
 FirstTexture::FirstTexture() {
-    Surf_Display = NULL;
+    renderer = NULL;
 
     Running = true;
-}
- 
-int FirstTexture::FirstTexture() {
-    return 0;
 }
  
 int FirstTexture::OnExecute() {

@@ -8,8 +8,8 @@ class FirstTexture {
     private:
         bool            Running;
 
-        SDL_Surface*    Surf_Display;
- 
+        SDL_Renderer * renderer;
+
     public:
  
         FirstTexture();
@@ -18,8 +18,10 @@ class FirstTexture {
  
     public:
 
+        FirstTexture();
         bool OnInit();
         void OnEvent(SDL_Event* Event);
+        void OnRender();
         void OnLoop();
         void OnCleanup();
 
