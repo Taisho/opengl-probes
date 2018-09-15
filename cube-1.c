@@ -1,6 +1,9 @@
 /** Compile with:
 #include <GL/glu.h>
 gcc -o cube-1 cube-1.c glut32.lib -lopengl32 -lglu32
+
+gcc `sdl2-config --libs --cflags` -o cube-1 cube-1.c `pkg-config gl --libs --cflags`
+
  **/
 //#include <GL/glut.h>
 #include <SDL.h>
@@ -50,13 +53,13 @@ void handleKeys(unsigned char key, int x, int y) {
 }
 
 int LoadGLTextures() {
-	int Status = FALSE;
+	int Status = 0;
 
 	SDL_Surface *TextureImage[1];
 	memset(TextureImage, 0, sizeof(void*)*1);
 
 	if(TextureImage[0] = SDL_LoadBMP("texture.bmp")) {
-		Status = TRUE;
+		Status = 1;
 
 		glGenTextures(1, &texture[0]);
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -119,7 +122,7 @@ int init(void){
 
 int InitGL(GLvoid) {
 	if (!LoadGLTextures()) {
-		return FALSE;
+		return 0;
 	}
 
 	glEnable(GL_TEXTURE_2D); // Enable Texture Mapping ( NEW )
@@ -129,7 +132,7 @@ int InitGL(GLvoid) {
 	glEnable(GL_DEPTH_TEST); // Enables Depth Testing
 	glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculations
-	return TRUE; // Initialization Went OK
+	return 1; // Initialization Went OK
 }
 
 void drawCube() {
@@ -174,7 +177,7 @@ void drawCube() {
 	glVertex3f( 1.0f,-1.0f, 1.0f); // Bottom Left Of The Quad (Right)
 	glVertex3f( 1.0f,-1.0f,-1.0f); // Bottom Right Of The Quad (Right)
 	glEnd(); // Done Drawing The Quad
-	//return TRUE; // Keep Going
+	//return 1; // Keep Going
 }
 
 void drawTexture() {
