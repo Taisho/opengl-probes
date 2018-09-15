@@ -6,12 +6,13 @@ gcc `sdl2-config --libs --cflags` -o cube-1 cube-1.c `pkg-config gl --libs --cfl
 
  **/
 //#include <GL/glut.h>
+#include <GL/glew.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <GL/glu.h>
 #include <GL/gl.h>
 
-#include <pthread.h>
+//#include <pthread.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <time.h>
@@ -23,7 +24,7 @@ static GLuint texture[1];
 SDL_Window* gWindow = NULL;
 SDL_GLContext gContext;
 
-pthread_t thread;
+//pthread_t thread;
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -319,7 +320,7 @@ int main(int argc, char** argv){
 	// frame every now and then and letting
 	// glut know that it's time to redraw
 	// scene
-	pthread_create(&thread, NULL, threadProc, NULL);
+	//pthread_create(&thread, NULL, threadProc, NULL);
 
 	while( !quit ) {
 		while(SDL_PollEvent(&e) != 0) {
