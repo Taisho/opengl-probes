@@ -12,7 +12,7 @@ class FirstTexture {
  
     public:
  
-        CApp();
+        FirstTexture();
  
         int OnExecute();
  

@@ -1,4 +1,5 @@
-#include "CApp.h"
+#include "FirstTexture.h"
+#include <SDL2/SDL.h>
  
 bool FirstTexture::OnInit() {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
