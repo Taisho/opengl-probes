@@ -94,10 +94,15 @@ int init(void){
 		}
 		else {
 			gContext = SDL_GL_CreateContext(gWindow);
+            GLenum err = glewInit();
 			if(gContext == NULL) {
 				printf("Can't create OpenGL context. ERROR:%s\n\nExitting", SDL_GetError());
 				result = 0;
 			}
+            else if( GLEW_OK != err ) {
+                printf("Can't init glew. ERROR: %i\n\nExitting.", err); 
+                result = 0;
+            }
 			else {
 				if(SDL_GL_SetSwapInterval(1) < 0) {
 					printf("Can't enable VSync. Video tearing may occur\n");
